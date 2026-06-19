@@ -12,14 +12,17 @@
 
 <!-- ユーザーログイン画面 -->
 <body>
-	<h1 class="headline">ログイン</h1>
+	<h1 class="headline blue-design">ログイン</h1>
 	<!-- IDやパスワードが間違ってたらエラーメッセージを表示 -->
 	<c:if test="${loginError != null}">
 		<div class="error">
 			<p>${loginError}</p>
 		</div>
 	</c:if>
-	<form action="${pageContext.request.contextPath}/login" method="post">
+
+	<!-- ID・パスワードの入力フォーム -->
+	<form action="${pageContext.request.contextPath}/draw/login"
+		method="post">
 		<div class="center">
 			<table border="1">
 				<tr>
@@ -33,11 +36,12 @@
 			</table>
 		</div>
 		<p class="center">
-			<input type="submit" value="ログイン">
+			<input type="submit" class="returnadmin blue-design" value="ログイン">
 		</p>
 	</form>
 	<p class="center">
-		<a class="returnadmin" href="${pageContext.request.contextPath}/about">戻る</a>
+		<a class="returnadmin blue-design"
+			href="${pageContext.request.contextPath}/draw/about">戻る</a>
 	</p>
 </body>
 

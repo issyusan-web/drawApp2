@@ -24,47 +24,16 @@ img.home {
 	gap: 20px;
 }
 
-/* 各ページ見出しに対して */
-/* class="headline" */
-.headline {
-	display: inline-block;
+/*青いグラデーション共通化*/
+.blue-design {
 	/* 青背景(グラデーションにしてる) */
 	background: linear-gradient(90deg, #1976D2, #1E88E5);
 	/* 白文字 */
 	color: white;
-	/* 文字サイズ */
-	font-size: 54px;
 	/*	フォントの種類*/
 	font-family: "M PLUS Rounded 1c", "Noto Sans JP", sans-serif;
 	/* 文字の太さ */
 	font-weight: 600;
-	/* 上下左右の余白 */
-	padding: 15px 30px;
-	/* 角丸の大きさ。 */
-	border-radius: 30px;
-	/* 文字間隔の調整 */
-	letter-spacing: 4px;
-	text-align: center;
-	/* 横一行に固定 */
-	white-space: nowrap;
-}
-
-/* 各ページ「管理者画面に戻る」に対して */
-/* class="returnadmin" */
-.returnadmin {
-	display: inline-block;
-	/* 青背景(グラデーションにしてる) */
-	background: linear-gradient(90deg, #1976D2, #1E88E5);
-	/* 白文字 */
-	color: white;
-	/* 文字サイズ */
-	font-size: 15px;
-	/*	フォントの種類*/
-	font-family: "M PLUS Rounded 1c", "Noto Sans JP", sans-serif;
-	/* 文字の太さ */
-	font-weight: 600;
-	/* 上下左右の余白 */
-	padding: 15px 30px;
 	/* 角丸の大きさ。 */
 	border-radius: 30px;
 	/* 文字間隔の調整 */
@@ -73,6 +42,28 @@ img.home {
 	text-align: center;
 	/* 横一行に固定 */
 	white-space: nowrap;
+}
+
+/* 各ページ見出しに対して */
+/* class="headline" */
+.headline {
+	display: inline-block;
+	/* 文字サイズ */
+	font-size: 54px;
+	/* 上下左右の余白 */
+	padding: 15px 30px;
+}
+
+/* 各ページのリンクに対して */
+/* class="returnadmin" */
+.returnadmin {
+	display: inline-block;
+	/* 文字サイズ */
+	font-size: 15px;
+	/* 上下左右の余白 */
+	padding: 15px 30px;
+	/* デフォの下線を消す */
+	border: none;
 }
 
 /* リンクに対して */
@@ -87,8 +78,9 @@ a img {
 	transition: transform 0.2s ease;
 }
 
-/* リンクをホバーする時 */
-a:hover {
+/* リンク、.returnadminをホバーする */
+a:hover,
+.returnadmin:hover {
 	/* マウスを乗せた時だけ下線表示 */
 	text-decoration: underline;
 	/* 1.1倍に拡大（大きすぎたら 1.05 など微調整） */
@@ -128,25 +120,6 @@ a:hover {
 .success {
 	color: green;
 	font-weight: bold;
-}
-
-input[type="submit"] {
-	/* ボタン色 */
-	background-color: #1976D2;
-	/* 文字色 */
-	color: white;
-	/* 内側余白 */
-	padding: 10px 20px;
-	/* 枠なし */
-	border: none;
-	/* 角丸 */
-	border-radius: 10px;
-	/* 文字サイズ */
-	font-size: 18px;
-	/* マウスホバーで手マーク */
-	cursor: pointer;
-	/* アニメーション */
-	transition: 0.2s ease;
 }
 
 table th,

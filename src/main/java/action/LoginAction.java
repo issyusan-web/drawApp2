@@ -1,11 +1,8 @@
-package controller;
+package action;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,21 +10,11 @@ import javax.servlet.http.HttpSession;
 import domain.User;
 import service.UserLoginService;
 
-//ユーザーログインに関するコントローラー
-@WebServlet("/login")
-public class LoginController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-	//about.jspから遷移するメソッド。
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		//login.jspへ遷移
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
-		rd.forward(request, response);
-	}
-
+//ログインリクエストを処理するクラス
+public class LoginAction implements Action{
 	//ユーザーの入力した情報をチェックして、登録されてるユーザーか確認する。
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		// ユーザーが入力した情報を取得 
@@ -36,11 +23,10 @@ public class LoginController extends HttpServlet {
 		//ID、パスワードの入力チェック
 		if (loginId == null || loginId.isEmpty() ||
 				password == null || password.isEmpty()) {
-
 			request.setAttribute("loginError", "ログインIDとパスワードを入力してください。");
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
-			rd.forward(request, response);
-			return;
+			//RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+			//rd.forward(request, response);
+			return "/login";
 		}
 
 		// UserLoginService の loginCheck メソッドにパラメータを渡す 
@@ -52,15 +38,17 @@ public class LoginController extends HttpServlet {
 			//セッションスコープに user を保存。
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
-			 response.sendRedirect(request.getContextPath() + "/memberSelectAllController");
-			 
+			//response.sendRedirect(request.getContextPath() + "/memberSelectAllController");
+			return "/admin/admin";
+
 			// ログイン ID やパスワードが間違っていた場合は
 		} else {
 			//リクエストスコープにエラーメッセージを格納。
 			request.setAttribute("loginError", "ログインID またはパスワードが間違っています。");
 			//loginページに戻して、再入力を促す。
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
-			rd.forward(request, response);
+			//RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+			//rd.forward(request, response);
+			return "/login";
 		}
 	}
 }
